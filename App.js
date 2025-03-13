@@ -80,7 +80,7 @@ function App(){
 }
 export default App;*/
 
-import React,{useState} from "react";
+/*import React,{useState} from "react";
 function App(){
   const[Key,setKey]=useState("");
   const handlekeyDown=(event)=>{
@@ -97,4 +97,27 @@ function App(){
     </div>
   )
 }
+export default App;*/
+
+import { useState } from "react";
+import Auth from './components/Auth';
+import Voting from './components/Voting';
+import CreatePoll from './components/createPoll';
+
+function App() {
+  const [token, setToken] = useState(null);
+
+  return (
+    <div>
+      <h1>Real-Time Voting App</h1>
+      {!token ? <Auth setToken={setToken} /> : (
+        <>
+          <CreatePoll onPollCreated={() => window.location.reload()} />
+          <Voting />
+        </>
+      )}
+    </div>
+  );
+}
+
 export default App;
